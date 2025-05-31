@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>HoodHandler | Coming Soon</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #ffffff;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+      padding: 20px;
+    }
+
+    img.logo {
+      max-width: 200px;
+      height: auto;
+      margin-bottom: 30px;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+
+    h1 span.green {
+      color: #2e7d32;
+    }
+
+    p.subtitle {
+      margin-bottom: 40px;
+      font-size: 1.2rem;
+      color: #555;
+    }
+
+    .countdown {
+      display: flex;
+      gap: 20px;
+      font-size: 1.5rem;
+      margin-bottom: 40px;
+    }
+
+    .countdown div {
+      min-width: 70px;
+    }
+
+    .label {
+      display: block;
+      font-size: 0.8rem;
+      color: #777;
+    }
+
+    footer {
+      font-size: 0.9rem;
+      color: #888;
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 2rem;
+      }
+
+      .countdown {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <img src="no name.png" alt="HoodHandler Logo" class="logo" />
+
+  <h1><span>Hood</span><span class="green">Handler</span></h1>
+  <p class="subtitle">We’re working on something great. Stay tuned!</p>
+  <p class="subtitle">Regards, Anakie.</p>
+  <div class="countdown">
+    <div><span id="days">00</span><span class="label">Days</span></div>
+    <div><span id="hours">00</span><span class="label">Hours</span></div>
+    <div><span id="minutes">00</span><span class="label">Minutes</span></div>
+    <div><span id="seconds">00</span><span class="label">Seconds</span></div>
+  </div>
+
+  <footer>
+    &copy; <span id="year"></span> HoodHandler. All rights reserved.
+  </footer>
+
+  <script>
+    // Countdown timer
+    const targetDate = new Date("June 21, 2025 00:00:00").getTime();
+
+    const updateCountdown = () => {
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById("days").innerText = String(days).padStart(2, '0');
+      document.getElementById("hours").innerText = String(hours).padStart(2, '0');
+      document.getElementById("minutes").innerText = String(minutes).padStart(2, '0');
+      document.getElementById("seconds").innerText = String(seconds).padStart(2, '0');
+    };
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+
+    // Set footer year
+    document.getElementById("year").innerText = new Date().getFullYear();
+  </script>
+
+</body>
+</html>
